@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrexovaVar9", "BrexovaVar9\BrexovaVar9.csproj", "{489F5EEC-30CA-4236-BF22-097F12207ECF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{489F5EEC-30CA-4236-BF22-097F12207ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{489F5EEC-30CA-4236-BF22-097F12207ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{489F5EEC-30CA-4236-BF22-097F12207ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{489F5EEC-30CA-4236-BF22-097F12207ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2282F250-7362-4F46-9143-5A48BB773EDA}
+	EndGlobalSection
+EndGlobal

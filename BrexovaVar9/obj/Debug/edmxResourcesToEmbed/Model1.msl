@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ClinicadbModelContainer" CdmEntityContainer="ClinicadbEntities">
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="ClinicadbModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="ClinicadbModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diagnoz">
+      <EntityTypeMapping TypeName="ClinicadbModel.Diagnoz">
+        <MappingFragment StoreEntitySet="Diagnoz">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jurnal_lecheniya">
+      <EntityTypeMapping TypeName="ClinicadbModel.Jurnal_lecheniya">
+        <MappingFragment StoreEntitySet="Jurnal_lecheniya">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_Pacient" ColumnName="id_Pacient" />
+          <ScalarProperty Name="id_Diagnoz" ColumnName="id_Diagnoz" />
+          <ScalarProperty Name="id_Lechenie" ColumnName="id_Lechenie" />
+          <ScalarProperty Name="id_Vrach" ColumnName="id_Vrach" />
+          <ScalarProperty Name="Date_postupleniya" ColumnName="Date_postupleniya" />
+          <ScalarProperty Name="Date_vipiski" ColumnName="Date_vipiski" />
+          <ScalarProperty Name="id_Sostoyanie" ColumnName="id_Sostoyanie" />
+          <ScalarProperty Name="id_Oslojnenie" ColumnName="id_Oslojnenie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lechenie">
+      <EntityTypeMapping TypeName="ClinicadbModel.Lechenie">
+        <MappingFragment StoreEntitySet="Lechenie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Oslojnenie">
+      <EntityTypeMapping TypeName="ClinicadbModel.Oslojnenie">
+        <MappingFragment StoreEntitySet="Oslojnenie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pacient">
+      <EntityTypeMapping TypeName="ClinicadbModel.Pacient">
+        <MappingFragment StoreEntitySet="Pacient">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Familia" ColumnName="Familia" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="id_Country" ColumnName="id_Country" />
+          <ScalarProperty Name="id_City" ColumnName="id_City" />
+          <ScalarProperty Name="id_Street" ColumnName="id_Street" />
+          <ScalarProperty Name="Number_Street" ColumnName="Number_Street" />
+          <ScalarProperty Name="Number_Kvartira" ColumnName="Number_Kvartira" />
+          <ScalarProperty Name="Number_OMS" ColumnName="Number_OMS" />
+          <ScalarProperty Name="Date_birthday" ColumnName="Date_birthday" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sostoyanie">
+      <EntityTypeMapping TypeName="ClinicadbModel.Sostoyanie">
+        <MappingFragment StoreEntitySet="Sostoyanie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Streets">
+      <EntityTypeMapping TypeName="ClinicadbModel.Streets">
+        <MappingFragment StoreEntitySet="Streets">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ClinicadbModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vrach">
+      <EntityTypeMapping TypeName="ClinicadbModel.Vrach">
+        <MappingFragment StoreEntitySet="Vrach">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Familia" ColumnName="Familia" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+          <ScalarProperty Name="Date_birthday" ColumnName="Date_birthday" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ClinicadbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Diagnoz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jurnal_lecheniya">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_Pacient" Type="int" Nullable="false" />
+          <Property Name="id_Diagnoz" Type="int" Nullable="false" />
+          <Property Name="id_Lechenie" Type="int" Nullable="false" />
+          <Property Name="id_Vrach" Type="int" Nullable="false" />
+          <Property Name="Date_postupleniya" Type="date" Nullable="false" />
+          <Property Name="Date_vipiski" Type="date" />
+          <Property Name="id_Sostoyanie" Type="int" Nullable="false" />
+          <Property Name="id_Oslojnenie" Type="int" />
+        </EntityType>
+        <EntityType Name="Lechenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Oslojnenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pacient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sex" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="phone" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_Country" Type="int" Nullable="false" />
+          <Property Name="id_City" Type="int" Nullable="false" />
+          <Property Name="id_Street" Type="int" Nullable="false" />
+          <Property Name="Number_Street" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Number_Kvartira" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Number_OMS" Type="nchar" MaxLength="16" Nullable="false" />
+          <Property Name="Date_birthday" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sostoyanie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Streets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vrach">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_birthday" Type="date" />
+          <Property Name="INN" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Jurnal_lecheniya_Diagnoz">
+          <End Role="Diagnoz" Type="Self.Diagnoz" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnoz">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Diagnoz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Lechenie">
+          <End Role="Lechenie" Type="Self.Lechenie" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lechenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Lechenie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Oslojnenie">
+          <End Role="Oslojnenie" Type="Self.Oslojnenie" Multiplicity="0..1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oslojnenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Oslojnenie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Pacient">
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Pacient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Sostoyanie">
+          <End Role="Sostoyanie" Type="Self.Sostoyanie" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sostoyanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Sostoyanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Vrach">
+          <End Role="Vrach" Type="Self.Vrach" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Vrach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacient_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacient_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacient_Streets">
+          <End Role="Streets" Type="Self.Streets" Multiplicity="1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Streets">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_Street" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ClinicadbModelContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnoz" EntityType="Self.Diagnoz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jurnal_lecheniya" EntityType="Self.Jurnal_lecheniya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lechenie" EntityType="Self.Lechenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oslojnenie" EntityType="Self.Oslojnenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacient" EntityType="Self.Pacient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sostoyanie" EntityType="Self.Sostoyanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Streets" EntityType="Self.Streets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vrach" EntityType="Self.Vrach" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Jurnal_lecheniya_Diagnoz" Association="Self.FK_Jurnal_lecheniya_Diagnoz">
+            <End Role="Diagnoz" EntitySet="Diagnoz" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Lechenie" Association="Self.FK_Jurnal_lecheniya_Lechenie">
+            <End Role="Lechenie" EntitySet="Lechenie" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Oslojnenie" Association="Self.FK_Jurnal_lecheniya_Oslojnenie">
+            <End Role="Oslojnenie" EntitySet="Oslojnenie" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Pacient" Association="Self.FK_Jurnal_lecheniya_Pacient">
+            <End Role="Pacient" EntitySet="Pacient" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Sostoyanie" Association="Self.FK_Jurnal_lecheniya_Sostoyanie">
+            <End Role="Sostoyanie" EntitySet="Sostoyanie" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Vrach" Association="Self.FK_Jurnal_lecheniya_Vrach">
+            <End Role="Vrach" EntitySet="Vrach" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacient_City" Association="Self.FK_Pacient_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacient_Country" Association="Self.FK_Pacient_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacient_Streets" Association="Self.FK_Pacient_Streets">
+            <End Role="Streets" EntitySet="Streets" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClinicadbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK_Pacient_City" FromRole="City" ToRole="Pacient" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK_Pacient_Country" FromRole="Country" ToRole="Pacient" />
+        </EntityType>
+        <EntityType Name="Diagnoz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Jurnal_lecheniya" Relationship="Self.FK_Jurnal_lecheniya_Diagnoz" FromRole="Diagnoz" ToRole="Jurnal_lecheniya" />
+        </EntityType>
+        <EntityType Name="Jurnal_lecheniya">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_Pacient" Type="Int32" Nullable="false" />
+          <Property Name="id_Diagnoz" Type="Int32" Nullable="false" />
+          <Property Name="id_Lechenie" Type="Int32" Nullable="false" />
+          <Property Name="id_Vrach" Type="Int32" Nullable="false" />
+          <Property Name="Date_postupleniya" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_vipiski" Type="DateTime" Precision="0" />
+          <Property Name="id_Sostoyanie" Type="Int32" Nullable="false" />
+          <Property Name="id_Oslojnenie" Type="Int32" />
+          <NavigationProperty Name="Diagnoz" Relationship="Self.FK_Jurnal_lecheniya_Diagnoz" FromRole="Jurnal_lecheniya" ToRole="Diagnoz" />
+          <NavigationProperty Name="Lechenie" Relationship="Self.FK_Jurnal_lecheniya_Lechenie" FromRole="Jurnal_lecheniya" ToRole="Lechenie" />
+          <NavigationProperty Name="Oslojnenie" Relationship="Self.FK_Jurnal_lecheniya_Oslojnenie" FromRole="Jurnal_lecheniya" ToRole="Oslojnenie" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK_Jurnal_lecheniya_Pacient" FromRole="Jurnal_lecheniya" ToRole="Pacient" />
+          <NavigationProperty Name="Sostoyanie" Relationship="Self.FK_Jurnal_lecheniya_Sostoyanie" FromRole="Jurnal_lecheniya" ToRole="Sostoyanie" />
+          <NavigationProperty Name="Vrach" Relationship="Self.FK_Jurnal_lecheniya_Vrach" FromRole="Jurnal_lecheniya" ToRole="Vrach" />
+        </EntityType>
+        <EntityType Name="Lechenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Jurnal_lecheniya" Relationship="Self.FK_Jurnal_lecheniya_Lechenie" FromRole="Lechenie" ToRole="Jurnal_lecheniya" />
+        </EntityType>
+        <EntityType Name="Oslojnenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Jurnal_lecheniya" Relationship="Self.FK_Jurnal_lecheniya_Oslojnenie" FromRole="Oslojnenie" ToRole="Jurnal_lecheniya" />
+        </EntityType>
+        <EntityType Name="Pacient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sex" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_Country" Type="Int32" Nullable="false" />
+          <Property Name="id_City" Type="Int32" Nullable="false" />
+          <Property Name="id_Street" Type="Int32" Nullable="false" />
+          <Property Name="Number_Street" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number_Kvartira" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number_OMS" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Date_birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Pacient_City" FromRole="Pacient" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Pacient_Country" FromRole="Pacient" ToRole="Country" />
+          <NavigationProperty Name="Jurnal_lecheniya" Relationship="Self.FK_Jurnal_lecheniya_Pacient" FromRole="Pacient" ToRole="Jurnal_lecheniya" />
+          <NavigationProperty Name="Streets" Relationship="Self.FK_Pacient_Streets" FromRole="Pacient" ToRole="Streets" />
+        </EntityType>
+        <EntityType Name="Sostoyanie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Jurnal_lecheniya" Relationship="Self.FK_Jurnal_lecheniya_Sostoyanie" FromRole="Sostoyanie" ToRole="Jurnal_lecheniya" />
+        </EntityType>
+        <EntityType Name="Streets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK_Pacient_Streets" FromRole="Streets" ToRole="Pacient" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vrach">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_birthday" Type="DateTime" Precision="0" />
+          <Property Name="INN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Jurnal_lecheniya" Relationship="Self.FK_Jurnal_lecheniya_Vrach" FromRole="Vrach" ToRole="Jurnal_lecheniya" />
+        </EntityType>
+        <Association Name="FK_Pacient_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacient_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Diagnoz">
+          <End Role="Diagnoz" Type="Self.Diagnoz" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnoz">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Diagnoz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Lechenie">
+          <End Role="Lechenie" Type="Self.Lechenie" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lechenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Lechenie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Oslojnenie">
+          <End Role="Oslojnenie" Type="Self.Oslojnenie" Multiplicity="0..1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oslojnenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Oslojnenie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Pacient">
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Pacient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Sostoyanie">
+          <End Role="Sostoyanie" Type="Self.Sostoyanie" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sostoyanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Sostoyanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_lecheniya_Vrach">
+          <End Role="Vrach" Type="Self.Vrach" Multiplicity="1" />
+          <End Role="Jurnal_lecheniya" Type="Self.Jurnal_lecheniya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jurnal_lecheniya">
+              <PropertyRef Name="id_Vrach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacient_Streets">
+          <End Role="Streets" Type="Self.Streets" Multiplicity="1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Streets">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_Street" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClinicadbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Diagnoz" EntityType="Self.Diagnoz" />
+          <EntitySet Name="Jurnal_lecheniya" EntityType="Self.Jurnal_lecheniya" />
+          <EntitySet Name="Lechenie" EntityType="Self.Lechenie" />
+          <EntitySet Name="Oslojnenie" EntityType="Self.Oslojnenie" />
+          <EntitySet Name="Pacient" EntityType="Self.Pacient" />
+          <EntitySet Name="Sostoyanie" EntityType="Self.Sostoyanie" />
+          <EntitySet Name="Streets" EntityType="Self.Streets" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Vrach" EntityType="Self.Vrach" />
+          <AssociationSet Name="FK_Pacient_City" Association="Self.FK_Pacient_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacient_Country" Association="Self.FK_Pacient_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Diagnoz" Association="Self.FK_Jurnal_lecheniya_Diagnoz">
+            <End Role="Diagnoz" EntitySet="Diagnoz" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Lechenie" Association="Self.FK_Jurnal_lecheniya_Lechenie">
+            <End Role="Lechenie" EntitySet="Lechenie" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Oslojnenie" Association="Self.FK_Jurnal_lecheniya_Oslojnenie">
+            <End Role="Oslojnenie" EntitySet="Oslojnenie" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Pacient" Association="Self.FK_Jurnal_lecheniya_Pacient">
+            <End Role="Pacient" EntitySet="Pacient" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Sostoyanie" Association="Self.FK_Jurnal_lecheniya_Sostoyanie">
+            <End Role="Sostoyanie" EntitySet="Sostoyanie" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_lecheniya_Vrach" Association="Self.FK_Jurnal_lecheniya_Vrach">
+            <End Role="Vrach" EntitySet="Vrach" />
+            <End Role="Jurnal_lecheniya" EntitySet="Jurnal_lecheniya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacient_Streets" Association="Self.FK_Pacient_Streets">
+            <End Role="Streets" EntitySet="Streets" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ClinicadbModelContainer" CdmEntityContainer="ClinicadbEntities">
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="ClinicadbModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="ClinicadbModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnoz">
+            <EntityTypeMapping TypeName="ClinicadbModel.Diagnoz">
+              <MappingFragment StoreEntitySet="Diagnoz">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jurnal_lecheniya">
+            <EntityTypeMapping TypeName="ClinicadbModel.Jurnal_lecheniya">
+              <MappingFragment StoreEntitySet="Jurnal_lecheniya">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Pacient" ColumnName="id_Pacient" />
+                <ScalarProperty Name="id_Diagnoz" ColumnName="id_Diagnoz" />
+                <ScalarProperty Name="id_Lechenie" ColumnName="id_Lechenie" />
+                <ScalarProperty Name="id_Vrach" ColumnName="id_Vrach" />
+                <ScalarProperty Name="Date_postupleniya" ColumnName="Date_postupleniya" />
+                <ScalarProperty Name="Date_vipiski" ColumnName="Date_vipiski" />
+                <ScalarProperty Name="id_Sostoyanie" ColumnName="id_Sostoyanie" />
+                <ScalarProperty Name="id_Oslojnenie" ColumnName="id_Oslojnenie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lechenie">
+            <EntityTypeMapping TypeName="ClinicadbModel.Lechenie">
+              <MappingFragment StoreEntitySet="Lechenie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oslojnenie">
+            <EntityTypeMapping TypeName="ClinicadbModel.Oslojnenie">
+              <MappingFragment StoreEntitySet="Oslojnenie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacient">
+            <EntityTypeMapping TypeName="ClinicadbModel.Pacient">
+              <MappingFragment StoreEntitySet="Pacient">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="id_Country" ColumnName="id_Country" />
+                <ScalarProperty Name="id_City" ColumnName="id_City" />
+                <ScalarProperty Name="id_Street" ColumnName="id_Street" />
+                <ScalarProperty Name="Number_Street" ColumnName="Number_Street" />
+                <ScalarProperty Name="Number_Kvartira" ColumnName="Number_Kvartira" />
+                <ScalarProperty Name="Number_OMS" ColumnName="Number_OMS" />
+                <ScalarProperty Name="Date_birthday" ColumnName="Date_birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sostoyanie">
+            <EntityTypeMapping TypeName="ClinicadbModel.Sostoyanie">
+              <MappingFragment StoreEntitySet="Sostoyanie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Streets">
+            <EntityTypeMapping TypeName="ClinicadbModel.Streets">
+              <MappingFragment StoreEntitySet="Streets">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ClinicadbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vrach">
+            <EntityTypeMapping TypeName="ClinicadbModel.Vrach">
+              <MappingFragment StoreEntitySet="Vrach">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Date_birthday" ColumnName="Date_birthday" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

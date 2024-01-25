@@ -1,0 +1,43 @@
+﻿<Page x:Class="BrexovaVar9.Pages.JurnalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BrexovaVar9.Pages"
+      mc:Ignorable="d" 
+      Background="White"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="JurnalPage">
+
+    <Grid>       
+            <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" >
+                    <Button Height="25" Margin="5" Content="Пациенты" Width="90" x:Name="BtnPacient" Click="BtnPacient_Click"/>
+
+
+
+                    <TextBox Width="150" Height="25" Margin="0 5 5 5" x:Name="txbPoisk" TextChanged="txbPoisk_TextChanged"/>
+                    <!--фамилия-->
+                    <ComboBox Margin="5" Width="100" Height="25" x:Name="cmbSort" SelectionChanged="cmbSort_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="id"/>
+                    <!--живое.неживое-->
+
+                    <Button Width="60" Height="25" Content="Сброс" x:Name="BtnClear" Click="BtnClear_Click"/>
+
+                </StackPanel>
+                <DataGrid x:Name="DGJurnal" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Header="Пациент" IsReadOnly="True" Width="*" Binding="{Binding Pacient.Familia}"/>
+                    <DataGridTextColumn Header="Поступление" IsReadOnly="True" Width="*" Binding="{Binding Date_postupleniya,StringFormat={}{0:dd.MM.yyyy}}"/>
+                    <DataGridTextColumn Header="Выписка" IsReadOnly="True" Width="*" Binding="{Binding Date_vipiski, StringFormat={}{0:dd.MM.yyyy}}"/>
+                    <DataGridTextColumn Header="Диагноз" IsReadOnly="True" Width="*" Binding="{Binding Diagnoz.Name}"/>
+                    <DataGridTextColumn Header="Врач" IsReadOnly="True" Width="*" Binding="{Binding Vrach.Familia}"/>
+                    <DataGridTextColumn Header="Состояние" IsReadOnly="True" Width="*" Binding="{Binding Sostoyanie.Name}"/>
+                    <DataGridTextColumn Header="Лечение" IsReadOnly="True" Width="*" Binding="{Binding Lechenie.Name}"/>
+                    <DataGridTextColumn Header="Осложнение" IsReadOnly="True" Width="*" Binding="{Binding Oslojnenie.Name}"/>                        
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>       
+    </Grid>
+</Page>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d1434c394936451c9a1afe970f0b6cfe" Name="Diagram1">
+        <EntityTypeShape EntityType="ClinicadbModel.City" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Country" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Diagnoz" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Jurnal_lecheniya" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Lechenie" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Oslojnenie" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Pacient" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Sostoyanie" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Streets" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicadbModel.Vrach" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <AssociationConnector Association="ClinicadbModel.FK_Pacient_City" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Pacient_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Jurnal_lecheniya_Diagnoz" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Jurnal_lecheniya_Lechenie" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Jurnal_lecheniya_Oslojnenie" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Jurnal_lecheniya_Pacient" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Jurnal_lecheniya_Sostoyanie" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Jurnal_lecheniya_Vrach" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicadbModel.FK_Pacient_Streets" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
